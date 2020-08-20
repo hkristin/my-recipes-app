@@ -13,6 +13,10 @@
 ActiveRecord::Schema.define(version: 2020_08_20_225452) do
 
   create_table "cookbook_recipes", force: :cascade do |t|
+    t.integer "cookbook_id"
+    t.integer "recipe_id"
+    t.integer "cook_time"
+    t.integer "prep_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
