@@ -1,0 +1,36 @@
+<% if recipe.errors.any? %>
+  <h5 class="error"><%= recipe.errors.full_messages.to_sentence %></h5>
+  <br>
+<% end %>
+
+<%= form_with model: recipe, local: true do |f| %>
+  <%= f.hidden_field :cookbook_id, value: params[:cookbook_id] %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: recipe.errors.any? ? "error-field" : nil %>
+  <br>
+
+  <%= f.label :ingredients %>
+  <%= f.text_field :ingredients %>
+  <br>
+
+  <%= f.label :cook_method %>
+  <%= f.text_field :cook_method %>
+  <br>
+
+  <%= f.label :difficulty %>
+  <%= f.number_field :difficulty %>
+  <br><br>
+
+  <%= f.fields_for :cookbook_recipes_attributes do |ref| %>
+    <%= ref.label :cook_time %>
+    <%= ref.number_field :cook_time, placeholder: "#{@recipe.cookbook_recipes.all.last.cook_time}", min: 0 %>
+    <br>
+
+    <%= ref.label :prep_time %>
+    <%= ref.number_field :prep_time, placeholder: "#{@recipe.cookbook_recipes.all.last.prep_time}", min: 0 %>
+
+    <br>
+  <% end %>
+  <%= f.submit class: "submit-link" %>
+<% end %>

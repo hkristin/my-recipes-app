@@ -1,0 +1,25 @@
+<div class="navbar">
+  <nav>
+    <a href="<%= cookbooks_path %>"><%= current_user.name %>'s Routines</a> > <%= @cookbook.title %> <br />
+  </nav>
+</div>
+<br><br>
+
+    <div id="recipe-cards">
+      <% @cookbook.recipes.each do |recipe| %>
+        <div class="recipe-card">
+          <% end %>
+          <%= link_to recipe.name, cookbook_recipe_path(@cookbook, recipe) %>
+        </div>
+      <% end %>
+    </div>
+    <br>
+    <div class="crud-links">
+      <%= link_to "Edit Cookbook", edit_cookbook_path(@cookbook), class: "edit-link" %> <br>
+      <%= link_to "Delete Cookbook", @cookbook, class: "delete-link", method: :delete %>
+    </div>
+  </div>
+  <br>
+
+
+</div>

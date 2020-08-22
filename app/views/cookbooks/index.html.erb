@@ -1,0 +1,39 @@
+<h1>Hi, <%= current_user.email %>!</h1>
+
+<%= link_to "Create Cookbook", new_cookbook_path, class: "submit-link" %>
+
+
+<h4>Filter by: </h4>
+<%= form_tag cookbooks_path, method: "get" do %>
+  <%= select_tag "cookbook", options_for_select(["Traditional", "Modern", "Foreign Cuisine", "Other"]), include_blank: true %>
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<% if !params[:cookbook].blank? %>
+  <% if params[:cookbook] == "Traditional" %>
+    <% @cookbooks = Cookbook.traditional_cookbooks %>
+    <h3>Traditional Cookbooks</h3>
+  <% elsif params[:cookbook] == "Modern" %>
+    <% @cookbooks = Cookbook.modern_cookbooks %>
+    <h3>Modern Cookbooks</h3>
+  <% elsif params[:cookbook] == "Foreign Cuisine" %>
+    <% @cookbooks = Cookbook.foreign_cuisine_cookbooks %>
+    <h3>Foreign Cuisine Cookbooks</h3>
+    <% elsif params[:cookbook] == "Other" %>
+      <% @cookbooks = Cookbook.other_cookbooks %>
+      <h3>Other Cookbooks</h3>
+  <% end %>
+<% end %>
+
+
+<br>
+
+<h2>List of Cookbooks</h2>
+
+<div id="cookbook-cards">
+  <% @cookbooks.each do |cookbook| %>
+    <%= link_to cookbook.title, cookbook, class: "cookbook-card" %> <br> <br>
+  <% end %>
+</div>
+
+<%= link_to "Sign out", destroy_user_session_path, id: "signout-link", method: :delete %>

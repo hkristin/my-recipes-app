@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get '/welcome', to: "welcome#home", as: "welcome_page"
+  root to: "welcome#home"
+
   resources :cookbook_recipes
   resources :recipes
   resources :cookbooks

@@ -1,4 +1,7 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_cookbook, only: [:show, :edit, :update]
+  before_action :set_cookbook_recipe, only: [:show, :edit, :update]
 
     def index
       if user_signed_in?

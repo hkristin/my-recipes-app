@@ -1,11 +1,12 @@
 class CookbooksController < ApplicationController
+  before_action :set_cookbook
   def index
     if user_signed_in?
       @cookbooks = current_user.cookbooks
     else
       redirect_to new_user_session_path
+    end
   end
-end
 
   def new
     @cookbook = current_user.cookbooks.build
@@ -35,8 +36,12 @@ end
     def cookbook_params
       params.require(:cookbook).permit(
         :title,
-        :user_id
+        :user_id,
+
       )
     end
-end
+
+    def set_cookbook
+      @cookbook = Cookbook.find_by(params[:id])
+    end
 end

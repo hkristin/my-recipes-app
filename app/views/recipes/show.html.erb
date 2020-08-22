@@ -1,0 +1,30 @@
+<div class="navbar">
+  <nav>
+    <a href="<%= cookbooks_path %>"><%= current_user.name %>'s Cookbooks</a> > <a href="<%= cookbook_path(@cookbook) %>"><%= @cookbook.title %></a> > <%= @recipe.name %>
+  </nav>
+</div>
+<br><br>
+
+<div class="recipe-container">
+  <% if @exercise.image.attached? %>
+    <%= image_tag(@exercise.image, class: "exercise-image") %>
+  <% end %>
+  <div class="recipe-info">
+    <h1><%= @recipe.name %></h1>
+    <strong>Type: </strong><%= @recipe.recipe_type %> <br>
+
+    <p>
+      <%= @recipe.description %>
+    </p>
+
+    <strong>Cook Time: </strong><%= @cookbook_recipe.cook_time %>
+    <strong>Prep Time: </strong><%= @cookbook_recipe.prep_time %>
+    <br>
+  </div>
+</div>
+
+
+<div class="crud-links">
+  <%= link_to "Edit Exercise", edit_routine_exercise_path(@routine, @exercise), class: "edit-link" %> <br>
+  <%= link_to "Delete Exercise", delete_routine_exercise_path(@routine, @exercise ), class: "delete-link", method: :delete %>
+</div>
