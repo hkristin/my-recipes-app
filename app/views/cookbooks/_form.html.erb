@@ -7,9 +7,6 @@
   <%= f.label :title %>
   <%= f.text_field :title, class: cookbook.errors.any? ? "error-field" : nil %>
   <br>
-
-  <%= f.label :user_id %>
-  <%= f.number_field :user_id %>
   <br>
 
   <br><br>
@@ -40,6 +37,7 @@
     <%= recipes_fields.label :difficulty %>
     <%= recipes_fields.number_field :difficulty %>
     <br><br>
+
 
     <%= recipes_fields.fields_for :cookbook_recipes_attributes do |ref| %>
       <%= ref.label :cook_time %>

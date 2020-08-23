@@ -1,4 +1,4 @@
-<%= link_to "#{current_user.name}'s Cookbooks", cookbooks_path %>
+<%= link_to "#{current_user.email}'s Cookbooks", cookbooks_path %>
 
 <h1>New Cookbook</h1>
 <%= render "cookbooks/form", cookbook: @cookbook %>
