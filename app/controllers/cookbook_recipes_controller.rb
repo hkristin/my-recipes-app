@@ -1,9 +1,8 @@
 class CookbookRecipesController < ApplicationController
   def destroy
-    #binding.pry
-    @cookbook_recipe = CookbookRecipe.find_by(cookbook_id: params[:cookbook_id], recipe_id: params[:id])
+    @cookbook_recipe = CookbookRecipe.find_by(cookbook_id: params[:id], recipe_id: params[:recipe_id])
     @cookbook_recipe.destroy
-    redirect_to cookbook_path((current_user.cookbooks.find_by(id: params[:cookbook_id])))
+    redirect_to cookbook_path((current_user.cookbooks.find_by(id: params[:id])))
   end
 
   private
