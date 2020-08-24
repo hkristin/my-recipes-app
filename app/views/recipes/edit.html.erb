@@ -1,13 +1,13 @@
-<% if recipe.errors.any? %>
+<% if @recipe.errors.any? %>
   <h5 class="error"><%= recipe.errors.full_messages.to_sentence %></h5>
   <br>
 <% end %>
 
-<%= form_with model: recipe, local: true do |f| %>
+<%= form_with model: @recipe, local: true do |f| %>
   <%= f.hidden_field :cookbook_id, value: params[:cookbook_id] %>
 
   <%= f.label :name %>
-  <%= f.text_field :name, class: recipe.errors.any? ? "error-field" : nil %>
+  <%= f.text_field :name, class: @recipe.errors.any? ? "error-field" : nil %>
   <br>
 
   <%= f.label :ingredients %>

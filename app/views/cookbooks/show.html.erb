@@ -1,15 +1,23 @@
 <div class="navbar">
   <nav>
-    <a href="<%= cookbooks_path %>"><%= current_user.name %>'s Cookbooks</a> > <%= @cookbook.title %> <br />
+    <a href="<%= cookbooks_path %>"><%= current_user.name %>'s Cookbooks</a>
+    <br>
+    <%= @cookbook.title %> <br />
   </nav>
 </div>
 <br><br>
 
 
+<h1><%= @cookbook.title %></h1>
+Author:  <strong><%= @cookbook.author %></strong>
+
+
+<br>
+<br>
     <div id="recipe-cards">
+
       <% @cookbook.recipes.each do |recipe| %>
         <div class="recipe-card">
-        <% end %>
           <%= link_to recipe.name, cookbook_recipe_path(@cookbook, recipe) %>
         </div>
       <% end %>

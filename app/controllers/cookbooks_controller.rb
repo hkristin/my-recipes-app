@@ -1,5 +1,5 @@
 class CookbooksController < ApplicationController
-  before_action :set_cookbook
+  before_action :set_cookbook, only: [:show, :edit, :update, :destroy]
 
   def index
     if user_signed_in?
@@ -17,34 +17,46 @@ class CookbooksController < ApplicationController
       @cookbook = current_user.cookbooks.build(cookbook_params)
       if @cookbook.save && !cookbook_params["recipe_ids"].empty?
         cookbook_params["recipe_ids"].each do |i|
-       next if i.empty?
-       @recipe = Recipe.find_by(id: i)
-       @cookbook.cookbook_recipes.find_by(recipe_id: @recipe.id).update(cook_time: 0, prep_time: 0)
-      end
+         next if i.empty?
+         @recipe = Recipe.find_by(id: i)
+         @cookbook.cookbook_recipes.find_by(recipe_id: @recipe.id).update(cook_time: 0, prep_time: 0)
+        end
 
-     redirect_to cookbooks_path
+        @cookbook.cookbook_recipes.last.update(cook_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:cook_time])
+        @cookbook.cookbook_recipes.last.update(prep_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:prep_time])
+        binding.pry
+        redirect_to cookbooks_path
     else
       render :new
    end
   end
 
   def show
-
   end
 
   def edit
-    @cookbook = Cookbook.find_by(id: params[:id])
   end
 
   def update
-    cookbook = Cookbook.find_by(id: params[:id])
-    cookbook.update(cookbook_params)
-    redirect_to 'cookbooks#show'
+    if @cookbook.update(cookbook_params)
+     cookbook_params["recipe_ids"].each do |i|
+       next if i.empty?
+       @recipe = Recipe.find_by(id: i)
+       @cookbook.cookbook_recipes.find_by(recipe_id: @recipe.id).update(cook_time: 0, prep_time: 0)
+     end
+
+     @cookbook.cookbook_recipes.last.update(cook_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:cook_time])
+     @cookbook.cookbook_recipes.last.update(prep_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:prep_time])
+
+     redirect_to cookbooks_path
+   else
+     render :edit
+   end
   end
 
   def destroy
     @cookbook.destroy
-    redirect_to 'cookbooks#show'
+    redirect_to cookbooks_path
   end
 
   private
@@ -52,6 +64,7 @@ class CookbooksController < ApplicationController
     def cookbook_params
       params.require(:cookbook).permit(
         :title,
+        :author,
         recipe_ids: [],
         recipes_attributes: [
           :id,
@@ -65,6 +78,6 @@ class CookbooksController < ApplicationController
     end
 
     def set_cookbook
-      @cookbook = Cookbook.find_by(params[:id])
+      @cookbook = Cookbook.find_by(id: params[:id])
     end
 end
