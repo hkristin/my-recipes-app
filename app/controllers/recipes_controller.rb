@@ -27,6 +27,7 @@ class RecipesController < ApplicationController
      if @recipe.update(recipe_params)
        cookbook_id = @recipe.cookbook_recipes.all.last.cookbook_id
        @cookbook = current_user.cookbooks.find_by(id: cookbook_id)
+
        redirect_to cookbook_recipe_path(@cookbook, @recipe)
      else
        render :edit
@@ -41,7 +42,18 @@ class RecipesController < ApplicationController
 
  private
    def recipe_params
-     params.require(:recipe).permit(:name, :ingredients, :cook_method, :difficulty)
+     params.require(:recipe).permit(
+       :name,
+       :ingredients,
+       :cook_method,
+       :difficulty,
+       cookbook_recipes_attributes: [
+         :id,
+         :cookbook_id,
+         :cook_time,
+         :prep_time
+       ]
+     )
    end
 
    def set_recipe

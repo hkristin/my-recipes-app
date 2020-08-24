@@ -3,6 +3,9 @@ class Cookbook < ApplicationRecord
   has_many :cookbook_recipes, dependent: :destroy
   has_many :recipes, :through => :cookbook_recipes
 
+  validates :title, presence: true 
+  validates :author, presence: true
+
   def recipes_attributes=(recipe)
     if recipe[:name] != "" && recipe[:ingredients] != "" &&
        recipe[:cook_method] != "" && recipe[:difficulty] != ""

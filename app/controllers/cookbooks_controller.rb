@@ -24,7 +24,6 @@ class CookbooksController < ApplicationController
 
         @cookbook.cookbook_recipes.last.update(cook_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:cook_time])
         @cookbook.cookbook_recipes.last.update(prep_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:prep_time])
-        binding.pry
         redirect_to cookbooks_path
     else
       render :new

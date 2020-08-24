@@ -3,6 +3,8 @@
   <br>
 <% end %>
 
+<h1>Edit Recipe</h1>
+
 <%= form_with model: @recipe, local: true do |f| %>
   <%= f.hidden_field :cookbook_id, value: params[:cookbook_id] %>
 
