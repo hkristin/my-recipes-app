@@ -13,7 +13,10 @@
   <%= f.text_field :author, class: cookbook.errors.any? ? "error-field" : nil %>
   <br>
   <br>
-
+  <%= f.label :creation_date %>
+  <%= f.number_field :creation_date, class: cookbook.errors.any? ? "error-field" : nil %>
+  <br>
+  <br>
   <br><br>
 
   <h3>Add Some Existing Recipes</h3>
