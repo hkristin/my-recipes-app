@@ -1,0 +1,16 @@
+<h1>Hi, <%= current_user.name %>!</h1>
+
+<%= link_to "Create Recipe", new_recipe_path, class: "submit-link" %>
+
+
+<br>
+
+<h2>List of Recipes</h2>
+
+<div id="recipe-cards">
+  <% @recipes.each do |recipe| %>
+    <%= link_to recipe.name, recipe, class: "recipe-card" %> <br> <br>
+  <% end %>
+</div>
+
+<%= link_to "Sign out", destroy_user_session_path, id: "signout-link", method: :delete %>

@@ -14,21 +14,18 @@ class CookbooksController < ApplicationController
   end
 
   def create
-      @cookbook = current_user.cookbooks.build(cookbook_params)
-      if @cookbook.save && !cookbook_params["recipe_ids"].empty?
-        cookbook_params["recipe_ids"].each do |i|
-         next if i.empty?
-         @recipe = Recipe.find_by(id: i)
-         @cookbook.cookbook_recipes.find_by(recipe_id: @recipe.id).update(cook_time: 0, prep_time: 0)
-        end
-
-        @cookbook.cookbook_recipes.last.update(cook_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:cook_time])
-        @cookbook.cookbook_recipes.last.update(prep_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:prep_time])
-        redirect_to cookbooks_path
-    else
-      render :new
+      @cookbook = current_user.cookbooks.create(cookbook_params)
+      # if @cookbook.save && !cookbook_params["recipe_ids"].empty?
+      #   cookbook_params["recipe_ids"].each do |i|
+      #    next if i.empty?
+      #    @recipe = Recipe.find_by(id: i)
+      #    @cookbook.cookbook_recipes.find_by(recipe_id: @recipe.id).update(cook_time: 0, prep_time: 0)
+      #   end
+      #
+      #   @cookbook.cookbook_recipes.last.update(cook_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:cook_time])
+      #   @cookbook.cookbook_recipes.last.update(prep_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:prep_time])
+      redirect_to cookbooks_path
    end
-  end
 
   def show
   end
@@ -38,14 +35,13 @@ class CookbooksController < ApplicationController
 
   def update
     if @cookbook.update(cookbook_params)
-     cookbook_params["recipe_ids"].each do |i|
-       next if i.empty?
-       @recipe = Recipe.find_by(id: i)
-       @cookbook.cookbook_recipes.find_by(recipe_id: @recipe.id).update(cook_time: 0, prep_time: 0)
-     end
-
-     @cookbook.cookbook_recipes.last.update(cook_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:cook_time])
-     @cookbook.cookbook_recipes.last.update(prep_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:prep_time])
+     # cookbook_params["recipe_ids"].each do |i|
+     #  next if i.empty?
+     #  @recipe = Recipe.find_by(id: i)
+     #  @cookbook.cookbook_recipes.find_by(recipe_id: @recipe.id)
+     #  end
+     # @cookbook.cookbook_recipes.last.update(cook_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:cook_time])
+     # @cookbook.cookbook_recipes.last.update(prep_time: cookbook_params[:recipes_attributes][:cookbook_recipes_attributes][:prep_time])
 
      redirect_to cookbooks_path
    else
@@ -65,14 +61,14 @@ class CookbooksController < ApplicationController
         :title,
         :author,
         recipe_ids: [],
-        recipes_attributes: [
-          :id,
-          :name,
-          :ingredients,
-          :cook_method,
-          :difficulty,
-          cookbook_recipes_attributes: [:id, :cook_time, :prep_time]
-        ]
+        # recipes_attributes: [
+        #   :id,
+        #   :name,
+        #   :ingredients,
+        #   :cook_method,
+        #   :difficulty,
+        #   cookbook_recipes_attributes: [:id, :cook_time, :prep_time]
+        # ]
       )
     end
 

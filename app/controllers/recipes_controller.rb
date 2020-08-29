@@ -25,9 +25,9 @@ class RecipesController < ApplicationController
 
    def update
      if @recipe.update(recipe_params)
-       cookbook_id = @recipe.cookbook_recipes.all.last.cookbook_id
-       @cookbook = current_user.cookbooks.find_by(id: cookbook_id)
-       redirect_to cookbook_recipe_path(@cookbook, @recipe)
+       # cookbook_id = @recipe.cookbook_recipes.all.last.cookbook_id
+       # @cookbook = current_user.cookbooks.find_by(id: cookbook_id)
+       redirect_to recipes_path
      else
        render :edit
      end

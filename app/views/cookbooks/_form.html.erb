@@ -3,7 +3,6 @@
 <% end %>
 
 <%= form_with model: cookbook, local: true do |f| %>
-
   <%= f.label :title %>
   <%= f.text_field :title, class: cookbook.errors.any? ? "error-field" : nil %>
   <br>
@@ -25,10 +24,10 @@
     <%= e.object.name %>
     <br>
   <% end %>
-  <br>
+  <br> %>
 
 
-  <h3>Create a New Recipe for the Cookbook</h3>
+  <!-- <h3>Create a New Recipe for the Cookbook</h3>
   <%= f.fields_for :recipes_attributes do |recipes_fields| %>
     <%= recipes_fields.label :name %>
     <%= recipes_fields.text_field :name %>
@@ -56,8 +55,8 @@
       <%= ref.number_field :prep_time %>
       <br>
     <% end %>
-<% end %>
+<% end %> --> 
 
 
-  <%= f.submit class: "submit-link" %>
+<%= f.submit class: "submit-link" %>
 <% end %>

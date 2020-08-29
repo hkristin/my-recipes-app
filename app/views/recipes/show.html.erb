@@ -1,6 +1,6 @@
 <div class="navbar">
   <nav>
-    <a href="<%= cookbooks_path %>"><%= current_user.name %>'s Cookbooks</a> > <a href="<%= cookbook_path(@cookbook) %>"><%= @cookbook.title %></a> > <%= @recipe.name %>
+    <a href="<%= recipes_path %>"><%= current_user.name %>'s Recipes</a> > <a href="<%= recipe_path(@recipe) %>"><%= @recipe.name %></a>
     <br>
     <%= @recipe.name %> <br />
   </nav>
@@ -12,12 +12,9 @@
 <strong>Difficulty: </strong><%= @recipe.difficulty %><br>
 
 
-
-
-
-    <strong>Cook Time: </strong><%= @cookbook_recipe.cook_time %><br>
-    <strong>Prep Time: </strong><%= @cookbook_recipe.prep_time %><br>
-    <br>
+<strong>Cook Time: </strong><%= @cookbook_recipe.cook_time %><br>
+<strong>Prep Time: </strong><%= @cookbook_recipe.prep_time %><br>
+<br>
 
 
 
