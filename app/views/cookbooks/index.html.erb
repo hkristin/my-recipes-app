@@ -32,7 +32,7 @@
 
 <div id="cookbook-cards">
   <% @cookbooks.each do |cookbook| %>
-    <%= link_to cookbook.title, cookbook, class: "cookbook-card" %> <br> <br>
+    <%= link_to cookbook.title, cookbook_path(cookbook), class: "cookbook-card" %> <br> <br>
   <% end %>
 </div>
 

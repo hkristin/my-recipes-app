@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :set_cookbook, only: [:show, :edit, :update]
+  before_action :set_cookbook, only: [:show, :edit]
   before_action :set_cookbook_recipe, only: [:show, :edit, :update]
 
     def index
@@ -25,9 +25,9 @@ class RecipesController < ApplicationController
 
    def update
      if @recipe.update(recipe_params)
-       # cookbook_id = @recipe.cookbook_recipes.all.last.cookbook_id
-       # @cookbook = current_user.cookbooks.find_by(id: cookbook_id)
-       redirect_to recipes_path
+       cookbook_id = @recipe.cookbook_recipes.all.last.cookbook_id
+       @cookbook = current_user.cookbooks.find_by(id: cookbook_id)
+       redirect_to cookbook_recipe_path(@cookbook, @recipe)
      else
        render :edit
      end
