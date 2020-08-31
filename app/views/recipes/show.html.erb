@@ -1,9 +1,7 @@
 <div class="navbar">
 
   <nav>
-    <a href="<%= cookbook_path(@cookbook) %>"><%= @cookbook.title %></a> > <a href="<%= recipe_path(@recipe) %>"><%= @recipe.name %></a>
-    <br>
-    <%= @recipe.name %> <br />
+    <a href="<%= cookbooks_path %>"><%= current_user.name %>'s Cookbooks </a> > <a href="<%= cookbook_path(@cookbook) %>"><%= @cookbook.title %></a> > <%= @recipe.name %> <br />
   </nav>
 </div>
 <br><br>
