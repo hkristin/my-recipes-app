@@ -1,0 +1,4 @@
+<%= link_to "#{current_user.name}'s Recipes", cookbook_path(@cookbook) %>
+
+<h1>New Recipe</h1>
+<%= render "recipes/form", recipe: @recipe %>
