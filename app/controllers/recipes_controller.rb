@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :set_cookbook, only: [:show, :edit]
+  before_action :set_cookbook, only: [:new, :show, :edit]
   before_action :set_cookbook_recipe, only: [:show, :edit, :update]
 
     def index
@@ -12,9 +12,19 @@ class RecipesController < ApplicationController
    end
 
    def new
+     @recipe = @cookbook.recipes.build
+     @recipe.cookbook_recipes.build
    end
 
    def create
+     cookbook_id = recipe_params["cookbook_recipes_attributes"]["cookbook_id"]
+     @cookbook = Cookbook.find_by(id: cookbook_id)
+     @recipe = @cookbook.recipes.build(recipe_params)
+     if @recipe.save
+       redirect_to cookbook_path(@cookbook)
+     else
+       render :new
+     end
    end
 
    def show
@@ -66,5 +76,4 @@ class RecipesController < ApplicationController
    def set_cookbook_recipe
      @cookbook_recipe = CookbookRecipe.find_by(cookbook_id: params[:cookbook_id], recipe_id: params[:id])
    end
-
-  end
+end
