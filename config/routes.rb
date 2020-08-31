@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   resources :recipes
   resources :cookbooks
+
   resources :cookbooks, only: [:show] do
-    resources :recipes, only: [:show, :index, :edit, :update, :destroy]
+    resources :recipes, only: [:new, :show, :index, :edit, :update, :destroy]
   end
 end
