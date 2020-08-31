@@ -15,10 +15,11 @@ Author:  <strong><%= @cookbook.author %></strong>
 <br>
 <br>
 
+<%= link_to "Create Recipe for Cookbook", new_cookbook_recipe_path(@cookbook, @recipe) %> <br>
 
     <div id="recipe-cards">
 
-      <% @cookbook.recipes.each do |recipe| %>
+      <% @cookbook.recipes.uniq.each do |recipe| %>
         <div class="recipe-card">
           <%= link_to recipe.name, cookbook_recipe_path(@cookbook, recipe) %>
         </div>

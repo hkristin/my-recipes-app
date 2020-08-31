@@ -24,38 +24,8 @@
     <%= e.object.name %>
     <br>
   <% end %>
-  <br> %>
+  <br>
 
-
-  <!-- <h3>Create a New Recipe for the Cookbook</h3>
-  <%= f.fields_for :recipes_attributes do |recipes_fields| %>
-    <%= recipes_fields.label :name %>
-    <%= recipes_fields.text_field :name %>
-    <br>
-
-    <%= recipes_fields.label :ingredients %>
-    <%= recipes_fields.text_field :ingredients %>
-    <br>
-
-    <%= recipes_fields.label :cook_method %>
-    <%= recipes_fields.text_area :cook_method %>
-    <br><br>
-
-    <%= recipes_fields.label :difficulty %>
-    <%= recipes_fields.number_field :difficulty %>
-    <br><br>
-
-
-    <%= recipes_fields.fields_for :cookbook_recipes_attributes do |ref| %>
-      <%= ref.label :cook_time %>
-      <%= ref.number_field :cook_time %>
-      <br>
-
-      <%= ref.label :prep_time %>
-      <%= ref.number_field :prep_time %>
-      <br>
-    <% end %>
-<% end %> --> 
 
 
 <%= f.submit class: "submit-link" %>
