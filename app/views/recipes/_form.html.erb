@@ -23,11 +23,11 @@
   <%= f.fields_for :cookbook_recipes_attributes do |ref| %>
     <%= ref.hidden_field :cookbook_id, value: params[:cookbook_id] %>
     <%= ref.label :cook_time %>
-    <%= ref.number_field :cook_time, placeholder: "#{@recipe.cookbook_recipes.all.last.cook_time}", min: 0 %>
+    <%= ref.number_field :cook_time, placeholder: "#{@recipe.cookbook_recipes.last.cook_time}" %>
     <br>
 
     <%= ref.label :prep_time %>
-    <%= ref.number_field :prep_time, placeholder: "#{@recipe.cookbook_recipes.all.last.prep_time}", min: 0 %>
+    <%= ref.number_field :prep_time, placeholder: "#{@recipe.cookbook_recipes.last.prep_time}" %>
 
     <br>
   <% end %>

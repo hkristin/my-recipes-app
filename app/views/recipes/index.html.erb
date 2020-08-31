@@ -5,11 +5,11 @@
 
 <br>
 
-<h2>List of Recipes</h2>
+<h2>List of All Recipes</h2>
 
 <div id="recipe-cards">
   <% @recipes.each do |recipe| %>
-    <%= link_to recipe.name, recipe, class: "recipe-card" %> <br> <br>
+    <%= link_to recipe.name, recipe_path(recipe), class: "recipe-card" %> <br> <br>
   <% end %>
 </div>
 
