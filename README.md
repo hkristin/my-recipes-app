@@ -3,6 +3,8 @@ MyRecipesApp
 Welcome to my Ruby on Rails App!
 
 My recipe app allows a user to create accounts where they can keep track of cookbooks, which contain many recipes.
+https://youtu.be/KYLN-wOFUFM
+
 
 Installation
 
